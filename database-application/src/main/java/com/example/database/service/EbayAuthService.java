@@ -31,6 +31,7 @@ public class EbayAuthService {
     public String getAccessToken() {
         // 이미 application.properties에서 설정된 access_token을 사용
         if (accessToken != null && !accessToken.isEmpty()) {
+            accessToken = refreshAccessToken();
             return accessToken;
         }
 
