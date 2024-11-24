@@ -9,52 +9,56 @@
 
 <!-- 검색 필터 폼 -->
 <form action="/main/search" method="get">
-    <label for="name">상품명:</label>
-    <input type="text" id="name" name="name" placeholder="상품명을 입력하세요"
-           th:value="${param.name}" />
-    <br>
+    <label for="query">검색어:</label>
+    <input type="text" id="query" name="query" placeholder="검색어를 입력하세요" />
+
+    <br><br>
 
     <label for="category1">대분류:</label>
-    <select id="category1" name="category1" onchange="this.form.submit()">
+    <select id="category1" name="category1">
         <option value="">-- 선택하세요 --</option>
-        <option value="디지털/가전" th:selected="${param.category1 == '디지털/가전'}">디지털/가전</option>
-        <option value="가구" th:selected="${param.category1 == '가구'}">가구</option>
+        <option value="디지털/가전">디지털/가전</option>
+        <option value="가구">가구</option>
         <!-- 다른 대분류 추가 -->
     </select>
 
+    <br><br>
+
     <label for="category2">중분류:</label>
-    <select id="category2" name="category2" onchange="this.form.submit()">
+    <select id="category2" name="category2">
         <option value="">-- 선택하세요 --</option>
-        <option value="영상가전" th:selected="${param.category2 == '영상가전'}">영상가전</option>
-        <option value="생활가전" th:selected="${param.category2 == '생활가전'}">생활가전</option>
+        <option value="영상가전">영상가전</option>
+        <option value="생활가전">생활가전</option>
         <!-- 다른 중분류 추가 -->
     </select>
 
+    <br><br>
+
     <label for="category3">소분류:</label>
-    <select id="category3" name="category3" onchange="this.form.submit()">
+    <select id="category3" name="category3">
         <option value="">-- 선택하세요 --</option>
-        <option value="TV" th:selected="${param.category3 == 'TV'}">TV</option>
-        <option value="세탁기" th:selected="${param.category3 == '세탁기'}">세탁기</option>
+        <option value="TV">TV</option>
+        <option value="냉장고">냉장고</option>
         <!-- 다른 소분류 추가 -->
     </select>
 
+    <br><br>
+
     <label for="category4">세부분류:</label>
-    <select id="category4" name="category4" onchange="this.form.submit()">
+    <select id="category4" name="category4">
         <option value="">-- 선택하세요 --</option>
-        <option value="LEDTV" th:selected="${param.category4 == 'LEDTV'}">LEDTV</option>
-        <option value="OLEDTV" th:selected="${param.category4 == 'OLEDTV'}">OLEDTV</option>
+        <option value="LED TV">LED TV</option>
+        <option value="스마트 TV">스마트 TV</option>
         <!-- 다른 세부분류 추가 -->
     </select>
+
+    <button type="submit">확인</button>
 </form>
 
-<!-- 검색 결과가 없을 때 메시지 표시 -->
-<div th:if="${message != null}">
-    <p th:text="${message}"></p>
-</div>
+<br><br>
 
-<!-- 검색된 상품 목록 표시 -->
-<table>
-    <thead>
+<!-- 검색 결과 표시 -->
+<table border="1">
     <tr>
         <th>이미지</th>
         <th>상품명</th>
@@ -62,25 +66,13 @@
         <th>카테고리</th>
         <th>상세 링크</th>
     </tr>
-    </thead>
-    <tbody>
     <tr th:each="product : ${products}">
-        <!-- 상품 이미지 -->
-        <td>
-            <img th:src="${product.image}" alt="상품 이미지" style="width:100px;height:auto;">
-        </td>
-        <!-- 상품명 -->
+        <td><img th:src="${product.image}" alt="이미지" width="100"></td>
         <td th:text="${product.title}"></td>
-        <!-- 가격 -->
-        <td th:text="${product.lprice}"></td>
-        <!-- 카테고리 -->
+        <td th:text="${product.lprice} + ' 원'"></td>
         <td th:text="${product.category1} + ' > ' + ${product.category2} + ' > ' + ${product.category3} + ' > ' + ${product.category4}"></td>
-        <!-- 상세 링크 -->
-        <td>
-            <a th:href="${product.link}" target="_blank">상세 보기</a>
-        </td>
+        <td><a th:href="${product.link}" target="_blank">상세 보기</a></td>
     </tr>
-    </tbody>
 </table>
 
 </body>

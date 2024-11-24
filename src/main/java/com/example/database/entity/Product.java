@@ -21,7 +21,7 @@ public class Product {
     @Column(name = "link")
     private String link;
 
-    @Column(name = "imgae")
+    @Column(name = "image")
     private String image;
 
     @Column(name = "lprice")
