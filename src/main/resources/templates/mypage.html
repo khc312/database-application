@@ -13,6 +13,9 @@
 <!-- 로그인 유저가 null일 경우 -->
 <p th:if="${loggedInUser == null}">로그인유저 Null</p>
 
+<!-- 위시리스트로 이동하는 버튼 -->
+<a href="/users/wishlist"><button>위시리스트 보기</button></a>
+
 <!-- 비밀번호 변경 버튼 -->
 <a href="/users/change-password"><button>비밀번호 변경</button></a>
 <form th:action="@{/users/delete-account}" method="post">

@@ -36,18 +36,23 @@ public class UserController {
 
     // 로그인 페이지
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser != null) {
+            // 로그인 상태라면 마이페이지로 리다이렉트
+            return "redirect:/users/mypage";
+        }
         return "login";
     }
 
     // 로그인 처리
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session) {
+
         boolean isAuthenticated = userService.authenticateUser(email, password);
 
         if (isAuthenticated) {
             Optional<User> userOptional = userService.findByEmail(email);
-            //User user = userOptional.orElseThrow(() -> new RuntimeException("User not found"));
             if (userOptional.isPresent()) {
                 User user = userOptional.get();
                 session.setAttribute("loggedInUser", user);  // 세션에 User 객체 저장

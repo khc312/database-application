@@ -4,26 +4,26 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
+@Table(name = "category") // DB 테이블 이름
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cate_num")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
+    @SequenceGenerator(name = "product_seq", sequenceName = "PRODUCT_SEQ", allocationSize = 1)
+    @Column(name = "cate_num") // DB 컬럼 이름
     private Long id;
 
-    @Column(name = "cate_name")
+    @Column(name = "cate_name") // DB 컬럼 이름
     private String cateName;
 
-    @Column(name = "cate_desc")
+    @Column(name = "cate_desc") // DB 컬럼 이름
     private String cateDesc;
 
-    @Column(name = "cate_active")
+    @Column(name = "cate_active") // DB 컬럼 이름
     private Boolean active;
 
     @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    private List<Product> products; // 카테고리에 속한 제품 목록
 
-    @OneToMany(mappedBy = "parentCategory")
-    private List<CategoryMiddle> middleCategories; // 중간 카테고리와 연결
+    // Getter, Setter, Constructors
 }
