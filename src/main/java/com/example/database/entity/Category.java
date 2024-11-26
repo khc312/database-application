@@ -4,25 +4,26 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "category") // DB 테이블 이름
+@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cate_num") // DB 컬럼 이름
+    @Column(name = "cate_num")
     private Long id;
 
-    @Column(name = "cate_name") // DB 컬럼 이름
+    @Column(name = "cate_name")
     private String cateName;
 
-    @Column(name = "cate_desc") // DB 컬럼 이름
+    @Column(name = "cate_desc")
     private String cateDesc;
 
-    @Column(name = "cate_active") // DB 컬럼 이름
+    @Column(name = "cate_active")
     private Boolean active;
 
     @OneToMany(mappedBy = "category")
-    private List<Product> products; // 카테고리에 속한 제품 목록
+    private List<Product> products;
 
-    // Getter, Setter, Constructors
+    @OneToMany(mappedBy = "parentCategory")
+    private List<CategoryMiddle> middleCategories; // 중간 카테고리와 연결
 }

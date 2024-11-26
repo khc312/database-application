@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductService {
+public class SearchService {
 
     @Autowired
     private ProductRepository productRepository;
 
     /**
      * 카테고리와 검색어를 기반으로 제품 검색
+     *
      * @param category1 1단계 카테고리
      * @param category2 2단계 카테고리
      * @param category3 3단계 카테고리

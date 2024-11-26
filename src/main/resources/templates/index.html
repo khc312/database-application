@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Search</title>
+</head>
+<body>
+<header>
+  <h1>Welcome to the Product Search Application!</h1>
+</header>
+<main>
+  <p th:text="${welcomeMessage}"></p>
+
+  <form action="/api/search" method="get">
+    <label for="categoryId">Category:</label>
+    <select id="categoryId" name="categoryId">
+      <!-- 카테고리 데이터를 동적으로 로드 -->
+    </select>
+
+    <label for="searchQuery">Search:</label>
+    <input type="text" id="searchQuery" name="searchQuery" placeholder="Enter a product name" required />
+    <button type="submit">Search</button>
+  </form>
+
+  <section id="searchResults">
+    <!-- 검색 결과를 렌더링 -->
+  </section>
+</main>
+<footer>
+  <p>&copy; 2024 Product Search Application</p>
+</footer>
+
+<script>
+  // Fetch categories dynamically from API
+  fetch('/api/categories')
+          .then(response => response.json())
+          .then(data => {
+            const categoryDropdown = document.getElementById('categoryId');
+            data.forEach(category => {
+              const option = document.createElement('option');
+              option.value = category.id;
+              option.textContent = category.cateName;
+              categoryDropdown.appendChild(option);
+            });
+          })
+          .catch(error => console.error('Error loading categories:', error));
+</script>
+</body>
+</html>
