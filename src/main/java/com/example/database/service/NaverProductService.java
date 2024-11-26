@@ -86,6 +86,7 @@ public class NaverProductService {
             product.setProductType(itemNode.path("productType").asInt());
             product.setImage(itemNode.path("image").asText());
             product.setLink(itemNode.path("link").asText());
+            product.setCurrency("KRW");
 
 
             products.add(product);
