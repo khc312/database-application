@@ -20,10 +20,10 @@ public class SearchService {
      * @param category2 2단계 카테고리
      * @param category3 3단계 카테고리
      * @param category4 4단계 카테고리
-     * @param searchQuery 검색어
+     * @param query 검색어
      * @return 검색된 제품 목록
      */
-    public List<Product> searchByCategories(String category1, String category2, String category3, String category4, String searchQuery) {
-        return productRepository.findByCategoriesAndSearch(category1, category2, category3, category4, searchQuery);
+    public List<Product> searchByCategories(String category1, String category2, String category3, String category4, String query) {
+        return productRepository.findByCategoriesAndSearch(category1, category2, category3, category4, query);
     }
 }
