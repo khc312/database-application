@@ -17,10 +17,10 @@ public class Product {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "link")
+    @Column(name = "link", length = 1000)
     private String link;
 
-    @Column(name = "image")
+    @Column(name = "image", length = 1000)
     private String image;
 
     @Column(name = "lprice")
@@ -30,6 +30,8 @@ public class Product {
     private Integer hprice;
 
     private String mallName;
+
+    @Column(name ="product_id")
     private String productId;
 
     @Column(name = "product_type")
@@ -50,6 +52,9 @@ public class Product {
 
     @Column(name = "category4")
     private String category4;
+
+    @Column(name = "currency")
+    private String currency;
 
     @ManyToOne
     @JoinColumn(name = "cate_num") // 외래 키로 `Category`와 연결
