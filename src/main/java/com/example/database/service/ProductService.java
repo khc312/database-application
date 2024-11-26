@@ -5,8 +5,6 @@ import com.example.database.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ProductService {
 
@@ -14,15 +12,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     /**
-     * 카테고리와 검색어를 기반으로 제품 검색
-     * @param category1 1단계 카테고리
-     * @param category2 2단계 카테고리
-     * @param category3 3단계 카테고리
-     * @param category4 4단계 카테고리
-     * @param searchQuery 검색어
-     * @return 검색된 제품 목록
+     * 상품 ID를 기반으로 상품 세부 정보 조회
+     *
+     * @param productId 상품 ID
+     * @return 상품 세부 정보
      */
-    public List<Product> searchByCategories(String category1, String category2, String category3, String category4, String searchQuery) {
-        return productRepository.findByCategoriesAndSearch(category1, category2, category3, category4, searchQuery);
+    public Product getProductById(Long productId) {
+        return productRepository.findById(productId).orElse(null);
     }
 }

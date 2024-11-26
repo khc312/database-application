@@ -14,7 +14,7 @@ public class SearchService {
     private ProductRepository productRepository;
 
     /**
-     * 카테고리와 검색어를 기반으로 제품 검색
+     * 카테고리 및 검색어를 기반으로 제품 검색
      *
      * @param category1 1단계 카테고리
      * @param category2 2단계 카테고리
