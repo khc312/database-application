@@ -30,7 +30,9 @@ public class MainController {
             @RequestParam(required = false) String category4,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
+            HttpSession session,
             Model model) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
 
         // 전체 상품 수 또는 검색된 상품 수 계산
         long totalItems = searchService.countSearchResults(searchQuery, category1, category2, category3, category4);
@@ -63,6 +65,7 @@ public class MainController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
+        model.addAttribute("loggedInUser", loggedInUser);
         // 검색 결과 화면으로 리턴
         return "search_results";
     }

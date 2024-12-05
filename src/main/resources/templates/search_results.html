@@ -6,53 +6,86 @@
     <!-- 외부 CSS 파일을 링크 -->
     <link rel="stylesheet" href="/css/search_results.css">
     <link rel="stylesheet" href="/css/mypage-modal.css">
+
 </head>
 <body>
-<h1>상품 검색 결과</h1>
-
+<h1>
+    @@@@김석윤의 최저가 사이트@@@@
+    <div class="header-fixed">
+        <div class="button-section">
+        <span th:if="${loggedInUser != null}">
+            <a href="/users/mypage">
+                <button class="mypage-button">마이페이지</button>
+            </a>
+            <a href="/users/logout">
+                <button class="logout-button">로그아웃</button>
+            </a>
+        </span>
+            <span th:if="${loggedInUser == null}">
+            <a href="/users/login">
+                <button class="login-button">로그인</button>
+            </a>
+            <a href="/users/register">
+                <button class="register-button">회원가입</button>
+            </a>
+        </span>
+        </div>
+        <span th:if="${loggedInUser != null}" class="user-info">
+        안녕하세요, <span th:text="${loggedInUser.username}"></span>님
+    </span>
+    </div>
+</h1>
+<h1>@@@@@@@@@@스탠바이미 50만원에팜@@@@@@@@@@@@</h1>
+<div class="banner-container">
+    <img src="/images/last.jpg" alt="왼쪽" class="banner-image left-banner">
+    <img src="/images/stan.jpg" alt="가운데" class="banner-image center-banner">
+    <img src="/images/funny.jpg" alt="오른쪽" class="banner-image right-banner">
+</div>
 <form id="searchForm">
-    <label for="category1">대분류:</label>
-    <select id="category1" name="category1" onchange="loadSubcategories('category1', 'category2')">
-        <option value="">-- 선택하세요 --</option>
-    </select>
+    <div class="search-bar-section">
+        <label for="searchQuery">검색어:</label>
+        <input type="text" id="searchQuery" name="searchQuery" placeholder="검색어를 입력하세요...">
+        <button type="button" onclick="performSearch()">검색</button>
+    </div>
+    <div id="searchHistoryArea" style="display: flex; overflow-x: auto; gap: 10px; flex-wrap: nowrap;">
+    </div>
+    <div class="category-section">
+        <label for="category1">대분류:</label>
+        <select id="category1" name="category1" onchange="loadSubcategories('category1', 'category2')">
+            <option value="">-- 선택하세요 --</option>
+        </select>
 
-    <label for="category2">중분류:</label>
-    <select id="category2" name="category2" onchange="loadSubcategories('category2', 'category3')">
-        <option value="">-- 선택하세요 --</option>
-    </select>
+        <label for="category2">중분류:</label>
+        <select id="category2" name="category2" onchange="loadSubcategories('category2', 'category3')">
+            <option value="">-- 선택하세요 --</option>
+        </select>
 
-    <label for="category3">소분류:</label>
-    <select id="category3" name="category3" onchange="loadSubcategories('category3', 'category4')">
-        <option value="">-- 선택하세요 --</option>
-    </select>
+        <label for="category3">소분류:</label>
+        <select id="category3" name="category3" onchange="loadSubcategories('category3', 'category4')">
+            <option value="">-- 선택하세요 --</option>
+        </select>
 
-    <label for="category4">세부분류:</label>
-    <select id="category4" name="category4" onchange="">
-        <option value="">-- 선택하세요 --</option>
-    </select>
-
-    <label for="searchQuery">검색어:</label>
-    <input type="text" id="searchQuery" name="searchQuery">
-
-    <button type="button" onclick="performSearch()">검색</button>
+        <label for="category4">세부분류:</label>
+        <select id="category4" name="category4" onchange="">
+            <option value="">-- 선택하세요 --</option>
+        </select>
+    </div>
 </form>
 
-<h3>최근 검색 기록</h3>
-<div id="searchHistoryArea" style="display: flex; overflow-x: auto; gap: 10px; flex-wrap: nowrap;">
-    <!-- 검색 결과를 여기에 동적으로 추가 -->
-</div>
-<h2>검색 결과</h2>
+
+
+
 <table id="resultsTable">
-    <thead>
-    <tr>
-        <th>이미지</th>
-        <th>상품명</th>
-        <th>가격</th>
-        <th>카테고리</th>
-        <th>상세 링크</th>
-        <th>위시리스트 추가</th>
-    </tr>
-    </thead>
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>이미지</th>-->
+<!--        <th>상품명</th>-->
+<!--        <th>가격</th>-->
+<!--        <th>카테고리</th>-->
+<!--        <th>상세 링크</th>-->
+<!--        <th>위시리스트 추가</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
     <tbody id="resultsBody">
     <!-- 검색 결과 데이터가 여기에 삽입 -->
     </tbody>
@@ -88,20 +121,6 @@
 </nav>
 
 
-<!-- 마이페이지 이동 버튼 -->
-<div class="header-fixed">
-    <div class="button-section">
-        <a href="/users/mypage">
-            <button class="mypage-button">마이페이지</button>
-        </a>
-        <span th:if="${loggedInUser == null}" class="login-info">
-            <a href="/users/login" class="login-link">로그인</a>
-        </span>
-    </div>
-    <span th:if="${loggedInUser != null}" class="user-info">
-        안녕하세요, <span th:text="${loggedInUser.username}"></span>님
-    </span>
-</div>
 
 
 
@@ -207,7 +226,7 @@
             <td>
                 <form method="POST" action="/users/wishlist/add">
                     <input type="hidden" name="productId" value="${product.id}">
-                    <button type="submit">위시리스트 추가</button>
+                    <button type="submit" class="wishlist-button">위시리스트 추가</button>
                 </form>
             </td>
         </tr>
@@ -231,7 +250,7 @@
         // 이전 페이지 버튼
         paginationHTML += `
         <li class="page-item ${currentPage === 0 ? 'disabled' : ''}">
-            <a class="page-link" href="javascript:goToPage(${currentPage - 1})">Previous</a>
+            <a class="page-link" href="javascript:goToPage(${currentPage - 1})">이전</a>
         </li>`;
 
         // 시작 페이지 ... 이전 페이지와 현재 페이지까지
@@ -255,7 +274,7 @@
         // 다음 페이지 버튼
         paginationHTML += `
         <li class="page-item ${currentPage === totalPages - 1 ? 'disabled' : ''}">
-            <a class="page-link" href="javascript:goToPage(${currentPage + 1})">Next</a>
+            <a class="page-link" href="javascript:goToPage(${currentPage + 1})">다음</a>
         </li>`;
 
         return paginationHTML;

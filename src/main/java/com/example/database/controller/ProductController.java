@@ -38,6 +38,9 @@ public class ProductController
             Product product = productOpt.get();
             model.addAttribute("product", product);
 
+            List<Product> similarProducts = productService.getProductByTitle(product.getTitle());
+            model.addAttribute("similarProducts", similarProducts);
+
             // 가격 정보가 존재하는지 확인
             if (product.getPrices().isEmpty()) {
                 // 가격이 없으면 새로 생성하여 추가

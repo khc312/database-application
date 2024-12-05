@@ -30,6 +30,10 @@ public class ProductService {
         this.priceminRepository = priceminRepository;
     }
 
+    public List<Product> getProductByTitle(String title) {
+        return productRepository.findByTitle(title);
+    }
+
 
     @Transactional
     public Optional<Product> getProductByIdWithShop(Long productId) {

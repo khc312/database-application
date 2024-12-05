@@ -5,167 +5,475 @@
     box-sizing: border-box;
 }
 
-/* 테이블 스타일 */
+/* 전체 폰트 설정 */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* 메인 제목 스타일 */
+h1:first-of-type {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ff5722;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 2em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h1:nth-of-type(2) {
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+/* 전체 검색 폼 스타일 */
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 95%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+/* 검색어 입력 섹션 스타일 */
+.search-bar-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    /*border: 2px solid #ffcc00; !* 검색 섹션 강조 *!*/
+}
+
+.search-bar-section label {
+    font-size: 1em;
+    color: #555;
+    margin-right: 10px;
+}
+
+.search-bar-section input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.search-bar-section input[type="text"]:focus {
+    border-color: #ff8305;
+    outline: none;
+}
+
+.search-bar-section button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar-section button:hover {
+    background-color: #ff8305;
+}
+
+/* 검색 기록 섹션 스타일 */
+#searchHistoryArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #fff8e1;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffe9b5;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+#searchHistoryArea .history-item {
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    color: #555;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#searchHistoryArea .history-item:hover {
+    background-color: #fffae6;
+    transform: scale(1.05);
+}
+
+
+.category-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    background-color: #f4f4f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    justify-content: space-between;
+}
+
+.category-section label {
+    font-size: 1em;
+    color: #555;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.category-section select {
+    width: 150px;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+    appearance: none;
+    background-image: url("https://img.icons8.com/ios-filled/50/sort-down.png");
+    background-repeat: no-repeat;
+    background-position: 96% center;
+    background-size: 1rem;
+
+}
+
+.category-section select:focus {
+    border-color: #ff8305;
+    outline: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .search-bar-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar-section input[type="text"] {
+        width: 100%;
+    }
+
+    .category-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+
+
+
 table {
-    border-collapse: collapse;
     width: 100%;
-    margin-top: 20px;
+    max-width: 95%;
+    border-collapse: collapse;
+    /*margin-top: 20px;*/
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    padding: 15px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95em;
 }
+
 
 th {
-    background-color: #f2f2f2;
+    background-color: #f9f9f9;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-img {
-    max-width: 150px;
+/* 이미지 셀 스타일 */
+td img {
+    max-width: 100px;
     height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-a {
+/* 상품명 링크 스타일 */
+td a {
+    color: #007bff;
     text-decoration: none;
-    color: blue;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-/* 고정된 헤더 섹션 */
-.header-fixed {
-    position: fixed;
-    top: 20px;  /* 화면 상단에서 20px 떨어짐 */
-    right: 20px; /* 화면 오른쪽에서 20px 떨어짐 */
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    gap: 15px;  /* 요소 간의 간격 */
-    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+td a:hover {
+    color: #ff5722;
+    text-decoration: underline;
 }
 
-
-/* 마이페이지 버튼 스타일 */
-.mypage-button {
-    background-color: #ff5722; /* 마이페이지 버튼 배경색 */
-    color: #fff; /* 버튼 텍스트 색상 */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* 가격 셀 스타일 */
+td:nth-of-type(3) {
+    color: #e64a19;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
-.mypage-button:hover {
-    background-color: #e64a19; /* 마우스를 올렸을 때 버튼 색상 */
-}
-.login-button, .user-button {
-    background-color: #ff5722; /* 버튼 배경색 */
-    color: #fff; /* 텍스트 색상 */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* 카테고리 셀 스타일 */
+td:nth-of-type(4) {
+    color: #555;
+    font-style: italic;
 }
 
-.login-button:hover, .user-button:hover {
-    background-color: #e64a19; /* 마우스를 올렸을 때 버튼 색상 */
-}
-
-/* 로그인 정보 스타일 */
-.login-info {
-    font-size: 14px;
-    color: #000; /* 로그인 정보 텍스트 색상 */
-}
-
-.login-link {
-    text-decoration: none;
-    color: #ff5722; /* 로그인 링크 색상 */
-}
-
-.login-link:hover {
-    text-decoration: underline; /* 마우스를 올렸을 때 밑줄 표시 */
-}
-
-/* 검색 폼 스타일 */
-form {
-    margin-bottom: 20px;
-    padding-right: 100px; /* 마이페이지 버튼과 겹치지 않도록 여백을 추가 */
-}
-
-label {
-    margin-right: 10px;
-}
-
-select, input[type="text"] {
-    padding: 5px;
-    margin-right: 10px;
-}
-
-button {
-    padding: 5px 15px;
-    background-color: #ff5722;
+/* 상세 보기 링크 스타일 */
+td:nth-of-type(5) a {
+    background-color: #ff9800;
     color: white;
-    border: none;
-    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-button:hover {
+td:nth-of-type(5) a:hover {
     background-color: #e64a19;
 }
 
-h3 {
-    margin-top: 20px;
+
+a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-/* 페이지네이션 전체 스타일 */
+a:hover {
+    text-decoration: underline;
+}
+
 .pagination {
-    display: flex; /* flexbox로 가로 배치 */
-    justify-content: center; /* 가운데 정렬 */
-    list-style-type: none; /* 기본적인 리스트 스타일 제거 */
-    padding: 0; /* 여백 제거 */
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 0;
 }
 
-/* 각 페이지 항목 스타일 */
 .pagination .page-item {
-    margin-right: 10px; /* 페이지 항목 간의 간격 */
+    margin: 0;
 }
 
-/* 페이지 링크 스타일 */
 .pagination .page-link {
-    display: inline-block; /* 블록 요소로 처리 */
-    padding: 10px 15px; /* 텍스트 여백 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    text-decoration: none; /* 링크 기본 스타일 제거 */
-    border: 1px solid #ccc; /* 테두리 추가 */
-    border-radius: 5px; /* 둥근 테두리 */
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
 
-/* 활성화된 페이지 스타일 */
+.pagination .page-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+
 .pagination .active .page-link {
-    background-color: #007bff; /* 활성 페이지 배경 색상 */
-    color: white; /* 텍스트 색상 */
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
 }
 
-/* 비활성화된 페이지 버튼 스타일 */
 .pagination .disabled .page-link {
-    color: gray; /* 비활성화된 버튼 텍스트 색상 */
-    pointer-events: none; /* 클릭 불가 */
+    color: #ccc;
+    pointer-events: none;
 }
 
-/* 검색 기록 항목 스타일 */
-.history-item {
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    #searchForm {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    #searchForm select,
+    #searchForm input[type="text"] {
+        width: 100%;
+    }
+
+    #searchForm button {
+        width: 100%;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+}
+
+
+
+.banner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+}
+
+/* 배너 이미지 스타일 */
+.banner-image {
+    max-width: 30%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+
+.center-banner {
+    max-width: 40%;
+}
+
+
+.banner-image:hover {
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    .banner-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .banner-image {
+        max-width: 100%;
+    }
+}
+
+
+.header-fixed {
+    position: absolute;
+    top: 45%;
+    right: 20px;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    gap: 1px;
 }
 
-/* 검색 기록 토큰 스타일 */
-.history-item .token {
-    width: 10px;
-    height: 10px;
-    background-color: #007bff;
-    border-radius: 50%;
+
+.mypage-button,
+.logout-button,
+.login-button,
+.register-button {
+    background-color: white;
+    color: #ff5722;
+    border: 2px solid #ff5722;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 0.4em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.mypage-button:hover,
+.logout-button:hover,
+.login-button:hover,
+.register-button:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+
+.user-info {
+    margin-left: 5px;
+    color: white;
+    font-size: 0.4em;
+    font-weight: normal;
+}
+
+
+@media (max-width: 768px) {
+    .header-fixed {
+        position: static;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        padding: 10px;
+    }
+}
+
+
+.wishlist-button {
+    background: linear-gradient(90deg, #ff5722, #ff9800);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+
+.wishlist-button:hover {
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.wishlist-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 768px) {
+    .wishlist-button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
 }

@@ -34,7 +34,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = """
     SELECT * FROM (
         SELECT p.*, ROWNUM AS rn FROM product p
-        WHERE 
+        WHERE p.id = (
+                 SELECT MIN(p2.id)
+                 FROM product p2
+                 WHERE p2.title = p.title
+                 AND p2.lprice = (
+                     SELECT MIN(p3.lprice)
+                     FROM product p3
+                     WHERE p3.title = p2.title
+                 )
+             ) AND
             (:searchQuery IS NULL OR LOWER(p.title) LIKE LOWER('%' || :searchQuery || '%')) AND
             (:category1 IS NULL OR p.category1 = :category1) AND
             (:category2 IS NULL OR p.category2 = :category2) AND
@@ -55,7 +64,16 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = """
     SELECT COUNT(*) FROM product p
-    WHERE 
+            WHERE p.id = (
+                 SELECT MIN(p2.id)
+                 FROM product p2
+                 WHERE p2.title = p.title
+                 AND p2.lprice = (
+                     SELECT MIN(p3.lprice)
+                     FROM product p3
+                     WHERE p3.title = p2.title
+                 )
+             ) AND
         (:searchQuery IS NULL OR LOWER(p.title) LIKE LOWER('%' || :searchQuery || '%')) AND
         (:category1 IS NULL OR p.category1 = :category1) AND
         (:category2 IS NULL OR p.category2 = :category2) AND
@@ -68,6 +86,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("category2") String category2,
             @Param("category3") String category3,
             @Param("category4") String category4);
+
+    @Query("SELECT p FROM Product p WHERE p.title = :title")
+    List<Product> findByTitle(@Param("title") String title);
 }
 
 
