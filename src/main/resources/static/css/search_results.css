@@ -206,7 +206,7 @@ th, td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    font-size: 0.95em;
+    font-size: 0.8em;
 }
 
 
@@ -256,9 +256,9 @@ td:nth-of-type(5) a {
     background-color: #ff9800;
     color: white;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-weight: bold;
     transition: background-color 0.3s;
 }
