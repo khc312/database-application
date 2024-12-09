@@ -50,7 +50,16 @@ public class UserService {
     }
 
     public User registerUser(User user) {
-        return userRepository.save(user);
+        // 사용자 정보 저장
+        User savedUser = userRepository.save(user);
+
+        // 기본 알림 설정 추가
+        Alarm newalarm = new Alarm();
+        newalarm.setUser(savedUser);
+        newalarm.setAlarmConfig(0);
+        alarmRepository.save(newalarm);
+
+        return savedUser;
     }
     // 사용자 정보 업데이트
     public User updateUser(User user) {
