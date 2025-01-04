@@ -29,7 +29,7 @@ public class NotificationService {
         this.alarmRepository = alarmRepository;
     }
 
-    @Scheduled(fixedRate = 10000) // 1시간마다 실행
+    @Scheduled(fixedRate = 100000)
     public void checkPriceDrops() {
         List<Wishlist> wishlistItems = wishlistRepository.findAll();
         System.out.println("Wishlist 조회 완료. 총 아이템 수: " + wishlistItems.size());
